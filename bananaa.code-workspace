@@ -2,7 +2,7 @@ import pyautogui
 import threading
 from pynput import keyboard
 
-
+#Posição da tela
 x = 3000  
 y = 493   
 
