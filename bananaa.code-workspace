@@ -1,3 +1,37 @@
-{
-	"folders": []
-}
+import pyautogui
+import threading
+from pynput import keyboard
+
+
+x = 3000  
+y = 493   
+
+#intervalo 
+interval = 0.00001  
+
+#loop
+running = True
+
+def on_press(key):
+    global running
+    running = False
+    return False  # STOP tecla 
+
+
+listener = keyboard.Listener(on_press=on_press)
+listener.start()
+
+def click_mouse():
+    global running
+    while running:
+        pyautogui.click(x, y)
+
+
+click_thread = threading.Thread(target=click_mouse)
+click_thread.start()
+
+
+listener.join()
+click_thread.join()
+
+print("Auto clicker finalizado.")
